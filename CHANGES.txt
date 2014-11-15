@@ -1,0 +1,261 @@
+Version 2.2.1 (being developed)
+===============================
+
+* WCSLIB:
+
+  * changed to version 4.19
+
+* Module wcs:
+
+  * added option to create a 'minimal' Projection object when a full
+    object cannot be created due to errors in the FITS header.
+
+* Module maputils:
+
+  * added Astropy support.
+
+  * various improvements and extensions.
+
+* Module mplutil:
+
+  * added sunbow color maps.
+
+  * in class AxesCallback use weak references to Axes objects.
+
+* Bug fixes.
+
+Version 2.2 (Apr 19, 2012)
+==========================
+
+* Class maputils.FITSimage:
+
+  * Method header2classic() returns a tuple with three elements.
+    The last one used to be a boolean but it is now a list with
+    FITS keywords that have been changed.
+
+* Class rulers.Ruler:
+
+  * now supports rulers specified by a start position, a size and an
+    angle w.r.t. the North.
+
+  * new method *set_title()* for labeling a ruler.
+
+* Module mplutil:
+
+  * new class CanvasCallback.
+
+  * work-around to add support for resize events to matplotlib's
+    Qt4Agg backend.
+
+  * work-around for matplotlib's (>=1.1.0) changed callback registry. 
+
+* WCSLIB:
+
+  * changed to version 4.13.4
+
+  * use WCSLIB's new error diagnostics system
+
+* New module kmpfit:
+
+  * provides new class Fitter for solving least-squares problem using
+    the Levenberg-Marquardt technique. It is based on the implementation
+    in C of Craig Markwardt's MPFIT routines.
+
+* Documentation:
+
+  * several improvements.
+
+Version 2.1 (Feb 14, 2011)
+==========================
+
+* Class wcs.Projection:
+
+  * added attribute *category*
+
+  * fixed ZPN projection related problem in method *mixed()*
+
+  * minimal FITS headers are now accepted
+
+  * added support for *grid coordinates*, i.e., CRPIX-relative pixel
+    coordinates. Methods *pixel2grid()* and *grid2pixel()*.
+
+  * added method *str2pos()* for converting positions represented as strings
+    to world- and pixel coordinates.
+
+* Module maputils:
+
+  * added new class *Skypolygon* for plotting shapes like ellipses,
+    rectangles and regular polygons. For these shapes
+    angles and distances along a great circle are preserved.
+    This class can be used for example to draw footprints on all-sky
+    plots or a beam to show the resolution of an instrument.
+
+  * improved position information in toolbar.  Message format can be
+    changed by user/programmer. 
+  
+  * support for RGB images. RGB values are displayed in message toolbar.
+  
+  * class FITSimage: improved versions of *header2classic()* and
+    *reproject_to()* methods;
+    new *slice2world()* method prints information about
+    slice positions (annotate 2d maps from a 3d data cube).
+
+  * catch error if *event.key* is None for Caps Lock keys
+
+  * get rid of 'new' keyword in histogram
+
+  * blur defaults improved
+
+  * *str_header()* method was unable to print dictionary (external) headers.
+    Fixed.
+
+
+* Module mplutil:
+
+  * work-around for special keys which are defined in matplotlib's GTKAgg
+    backend but 'missing' from the Qt4Agg backend.
+    The following keys are made available: 'pageup', 'pagedown',
+    'left', 'right', 'up', 'down', 'home', 'end'.
+
+* Module positions:
+
+  * units 1/...  and /...  also recognized.  Can be used for spectral
+    translations that transform to e.g.  AWAV. 
+
+  * introduced '?' character as wildcard for units.
+
+  * introduced case insensitive minimal match for 'UNITS' as a replacement
+    for header units.
+
+  * all column, row and line numbers now start with 1.
+
+
+* Module shapes:
+
+  * messages for toolbar improved.
+  
+  * changed conversion routine to support shapes on maps with only one
+    spatial axis (e.g. position-velocity maps).
+    
+  * GUI improved.
+  
+  * improved writing shape data to file.
+
+  * catch error if *event.key* is None for Caps Lock keys
+
+  * improved moving objects (from within any point within the ellipse)
+
+  * improved rotation ellipse
+
+  * improved sampling on ellipse
+
+  * added rotation to rectangles
+
+  * changed writing position to terminal with left mouse button to combination
+    of left mouse button and shift key. This prevents interference with
+    module shapes where one drags a shape with the left mouse button.
+
+
+* Module wcsgrat:
+
+  * fixed bug with precision in seconds.
+
+  * use positions module to evaluate expressions for startx and starty
+    parameter in Graticule class.
+
+  * use positions module to evaluate expressions for deltax and deltay
+    parameter in Graticule class.
+
+  * introduced a syntax to set labels in LaTeX in exponential format.
+
+  * sexagesimal labeling with h, m, s characters or with superscripts with
+    Boolean parameter *texsexa*.
+
+  * allow Graticule parameter *unitsx* and *unitsy* also to be applied to
+    non-offset axes. (Examples in maputils tutorial).
+
+  * minutes and seconds labeling for negative declinations get '-' sign
+
+  * center of offset axis can be changed with parameter *startx*, *starty*
+    and a string as argument.
+
+  * Right Ascension labels in TeX (hms) now have better alignment.
+
+* New module profiles:
+
+  * added function *gauest()* for estimating gaussian components in
+    a profile. These estimates can e.g. subsequently be used as initial
+    estimates for a least squares fit.
+
+* WCSLIB: changed to version 4.7 (from 4.5)
+
+
+Version 2.0.2 (Sep 16, 2010)
+============================
+
+* Class wcs.Projection:
+
+  * allow for FITS headers that incorrectly represent EQUINOX as a string
+
+  * added support for AIPS keyword VELREF
+
+* Function mplutil.gipsy_connect() connects GIPSY keyword events
+  to Matplotlib event loop.
+
+* Added Microsoft Windows support.
+
+
+Version 2.0.1 (Aug 11, 2010)
+============================
+
+* WCSLIB 4.5 included in distribution so
+  it does not need to be separately installed anymore.
+
+Version 2.0 (Jul 16, 2010)
+==========================
+
+* Class wcs.Projection:
+
+  * added method *inside()*.
+
+Version 1.9.2 (Jul 12, 2010)
+============================
+
+* Function wcs.coordmap(): added arguments *dst_shape*, *dst_offset*
+  and *src_offset*.
+
+* Class wcs.Projection:
+
+  * fixed bug in class WrappedHeader.
+
+  * allow for WSRT files with topocentric frequencies (via class WrappedHeader)
+
+  * added attribute *altspecarg*.
+
+* Added modules *rulers* and *shapes*.
+
+* Included SciPy modules *filters* and *interpolation*. The latter was slightly
+  modified.
+
+
+Version 1.9.1 (Feb 25, 2010)
+============================
+
+* Class wcs.Projection:
+
+  * added attribute *euler*.
+
+  * fixed bug in method *mixed()*
+
+* Class mplutil.VariableColormap:
+
+  * added NumPy array as possible source.
+
+  * added method *set_length()*
+
+
+
+Version 1.9 (Jan 16, 2010)
+==========================
+
+* First public release.
